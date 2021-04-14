@@ -25,7 +25,7 @@ public:
         first = NULL;
         last = NULL;
     }
-    void fillup(int q[], int m) ///lista feltöltése tömbből
+    void fillup(int q[], int m) ///lista feltöltése tömbből - MARCELL
     {
 
         //m: tomb elemeinek szama, e: elozo, j: jelenlegi
@@ -42,7 +42,7 @@ public:
         e->next=NULL;
         last=e;
     }
-    void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé"
+    void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé" - ZSUZSi
     {
         element* elso = new element;
         elso->data = q;
@@ -59,7 +59,7 @@ public:
             first = elso;
         }   
     }
-    void afternewelement(int q) ///új elem beszúrása a lista végére 
+    void afternewelement(int q) ///új elem beszúrása a lista végére - BÁLINT
     {
         element* elso = new element;
         elso->data = q;
@@ -76,7 +76,7 @@ public:
             last=elso;
         }
     }
-    void insidenewelement(int q) ///új elem beszúrása a listába
+    void insidenewelement(int q) ///új elem beszúrása a listába - ZSUSZI
     {
         element* elso = new element;
         elso->data = q;
@@ -98,7 +98,7 @@ public:
             first->next = elso;
         }
     }
-    void arrangednewelement(int q) ///új elem beszúrása rendezett listába
+    void arrangednewelement(int q) ///új elem beszúrása rendezett listába - MARCELL
     {
         ///megnézzük hogy rendezett e a lista --> elvileg ez a rész működik
         bool rendezett = true;
@@ -166,7 +166,7 @@ public:
             cout<<"ERROR: A lista ures."<<endl;
         }
     }
-    void firstdelete() ///az elsõ elem törlése
+    void firstdelete() ///az elsõ elem törlése - BÁLINT
     {
         if(first!=NULL)
         {
@@ -180,7 +180,7 @@ public:
             cout<<"A lista ures."<<endl;
         }
     }
-    void lastdelete() ///az utolsó elem törlése
+    void lastdelete() ///az utolsó elem törlése - CSABI
     {
        if(first!=NULL)
         {
@@ -199,7 +199,7 @@ public:
             cout<<"A lista ures."<<endl;
         } 
     }
-    void insidedelete(int q) ///köztes elem törlése
+    void insidedelete(int q) ///köztes elem törlése - MARCELL
     {
         if (q=1)
         {
@@ -230,7 +230,7 @@ public:
     
         }
     }
-    void specifiedsearch(int q) ///megadott elem keresése
+    void specifiedsearch(int q) ///megadott elem keresése - Bálint
     {
         element* n = first;
         int m=1;
@@ -248,7 +248,7 @@ public:
         cout<<"ERROR: A lista nem tartalmazza a megadott elemet."<<endl;
         }
     }
-    void specifiedmodify(int q) ///megadott elem módosítása
+    void specifiedmodify(int q) ///megadott elem módosítása - ZSUZSI
     {
         cout<<"Adja meg az uj szamot: ";
         int a;
@@ -268,7 +268,7 @@ public:
         cout<<"ERROR: A lista nem tartalmazza a modositando elemet."<<endl;
         }
     }
-    void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel
+    void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel - ZSUZSI
     {
         if (first!=NULL && q!=0 && q<this->subquantity()){
         element* n = first;
@@ -285,7 +285,7 @@ public:
         }
      
     }
-    void listreverse() /// a lista megfordítása
+    void listreverse() /// a lista megfordítása - JULCSI
     {
         if (first==NULL)
         {
@@ -359,7 +359,7 @@ public:
             cout<<"A lista nem tartalmaz elemeket."<<endl;
         }
     }
-    void deletelist() ///a lista törlése
+    void deletelist() ///a lista törlése - Marcell
     {
       cout<<"A lista sikeresen torlodott."<<endl;
       delete this;
