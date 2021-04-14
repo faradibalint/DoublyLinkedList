@@ -11,7 +11,8 @@ using namespace std;
 struct element
 {
     int data;
-    element *next; 
+    element *next;
+    element *previous;
 };
 
 class LList
