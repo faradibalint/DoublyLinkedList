@@ -3,6 +3,7 @@
 //This project is public. Source: github --> faradibalint/DoublyLinkedList
 //Previous version (Simply linked list) Source: github --> faradibalint/LinkedList-Project
 //Starting Date: 2021-04-14
+//The language of the project: English
 #include <iostream>
 #include <conio.h>
 
@@ -59,7 +60,7 @@ public:
             first = elso;
         }   
     }
-    void afternewelement(int q) ///új elem beszúrása a lista végére - BÁLINT
+    void afternewelement(int q) ///új elem beszúrása a lista végére - BÁLINT - KÉSZ
     {
         element* elso = new element;
         elso->data = q;
@@ -73,6 +74,7 @@ public:
         else
         {
             last->next=elso;
+            elso->previous = last;
             last=elso;
         }
     }
@@ -157,27 +159,28 @@ public:
             }
             else 
             {
-                cout<<"ERROR: A lista rendezetlen. A rendezeshez hasznalja az arrange() fuggvenyt."<<endl;
+                cout<<"ERROR: The list is unordered. To sort the list, use function arrange()."<<endl;
             }
             
         }
         else
         {
-            cout<<"ERROR: A lista ures."<<endl;
+            cout<<"ERROR: The list is empty."<<endl;
         }
     }
-    void firstdelete() ///az elsõ elem törlése - BÁLINT
+    void firstdelete() ///az elsõ elem törlése - BÁLINT - KÉSZ
     {
         if(first!=NULL)
         {
             element* Pelso=first;
             first=first->next;
+            first->previous = NULL;
             delete Pelso;
-            cout<<"Az elso elemet toroltuk."<<endl;
+            cout<<"The first element has been successfully deleted."<<endl;
         }
         else
         {
-            cout<<"A lista ures."<<endl;
+            cout<<"ERROR: The list is empty."<<endl;
         }
     }
     void lastdelete() ///az utolsó elem törlése - CSABI
@@ -192,18 +195,18 @@ public:
             last=n;
             last->next=NULL;
             delete Utolso;
-            cout<<"Az utolso elemet toroltuk."<<endl;
+            cout<<"The last element has been successfully deleted."<<endl;
         }
         else
         {
-            cout<<"A lista ures."<<endl;
+            cout<<"ERROR:The list is empty"<<endl;
         } 
     }
-    void insidedelete(int q) ///köztes elem törlése - MARCELL
+    void insidedelete(int q) ///köztes elem törlése - Bálint - KÉSZ
     {
         if (q=1)
         {
-            cout<<"ERROR: Nem torolheti ki az elso vagy utolso elemet ezzel a funkcioval. Hasznalja a firstdelete() vagy lastdelete() funkciokat."<<endl; 
+            cout<<"ERROR: You can not delete the first or last element with this function. Rather use firstdelete() or lastdelete() functions."<<endl; 
         }
         else
         {
@@ -220,17 +223,18 @@ public:
         if (deleting!=last)
         {
              n->next = deleting->next;
+             deleting->next->previous = n;
              delete deleting;
         }else {
-            cout<<"ERROR: Nem torolheti ki az elso vagy utolso elemet ezzel a funkcioval. Hasznalja a firstdelete() vagy lastdelete() funkciokat."<<endl;        }
+            cout<<"ERROR: You can not delete the first or last element with this function. Rather use firstdelete() or lastdelete() functions."<<endl;        }
        
         }else{
-            cout<< "ERROR: A lista nem tartalmazza a megadott elemet, vagy ures." <<endl;
+            cout<< "ERROR: The list is empty or does not contain the element given" <<endl;
         }
     
         }
     }
-    void specifiedsearch(int q) ///megadott elem keresése - Bálint
+    void specifiedsearch(int q) ///megadott elem keresése - Bálint - KÉSZ
     {
         element* n = first;
         int m=1;
@@ -241,19 +245,20 @@ public:
         }
         if (n->data==q)
         {
-        cout<<"A keresett elem a(z) "<<m<<". helyen talalhato."<<endl;
+        cout<<"The searched element is in the  "<<m<<". place of the list."<<endl;
         }
         else
         {
-        cout<<"ERROR: A lista nem tartalmazza a megadott elemet."<<endl;
+        cout<<"ERROR: The list is empty."<<endl;
         }
     }
-    void specifiedmodify(int q) ///megadott elem módosítása - ZSUZSI
+    void specifiedmodify(int q) ///megadott értékű elem módosítása - Bálint - KÉSZ
     {
-        cout<<"Adja meg az uj szamot: ";
+        cout<<"Give the new number: ";
         int a;
         cin>>a;
         element* n = first;
+        if (first!=NULL){
         while(n->data!=q && n!=last)
         {
             n=n->next;
@@ -261,11 +266,14 @@ public:
         if (n->data==q)
         {
         n->data=a;
-        cout<<"A modositas sikeresen lezajlott."<<endl;
+        cout<<"Modification has been successfully done."<<endl;
         }
         else
         {
-        cout<<"ERROR: A lista nem tartalmazza a modositando elemet."<<endl;
+        cout<<"ERROR: The list does not contain the element given."<<endl;
+        }
+        }else{
+            cout<<"ERROR:The list is empty."<<endl;
         }
     }
     void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel - ZSUZSI
@@ -281,7 +289,7 @@ public:
         n->data = n->next->data;
         n->next->data = temporary;
         }else{
-            cout<<"ERROR: Hibas bemenet/A lista nem tartalmaz elemeket."<<endl;
+            cout<<"ERROR: Incorrect input/The list does not contain the element given."<<endl;
         }
      
     }
@@ -289,11 +297,11 @@ public:
     {
         if (first==NULL)
         {
-            cout<<"ERROR: A lista nem tartalmaz elemeket."<<endl;
+            cout<<"ERROR: The list is empty"<<endl;
         }
         else if (first==last)
         {
-            cout<<"ERROR: A lista egy elemu, a megforditas nem vegezheto el."<<endl;
+            cout<<"ERROR: The list has only 1 element, the function can not be done."<<endl;
         }
         else
         {
@@ -338,7 +346,7 @@ public:
         }
         else
         {
-            cout<<"A lista nem tartalmaz elemeket."<<endl;
+            cout<<"ERROR: The list is empty."<<endl;
         }
     }
     void quantity() /// a lista elemeinek darabszáma
@@ -352,16 +360,16 @@ public:
                 m=m+1;
                 n=n->next;
                 }
-            cout<<"A lista "<<m<< " darab elemmel rendelkezik."<<endl;
+            cout<<"The list contains "<<m<< "elements"<<endl;
             }
         else
         {
-            cout<<"A lista nem tartalmaz elemeket."<<endl;
+            cout<<"ERROR: The list is empty."<<endl;
         }
     }
     void deletelist() ///a lista törlése - Marcell
     {
-      cout<<"A lista sikeresen torlodott."<<endl;
+      cout<<"List has been successfully deleted."<<endl;
       delete this;
     }
     int subquantity(){
@@ -385,11 +393,11 @@ public:
     {
         if (first==NULL)
         {
-            cout<<"ERROR: A lista nem tartalmaz elemeket."<<endl;
+            cout<<"ERROR: The list is empty."<<endl;
         }
         else if (first==last)
         {
-            cout<<"ERROR: A lista egy elemu, a sorba rendezes nem vegezheto el."<<endl;
+            cout<<"ERROR: The list has only 1 element, the function can not be done."<<endl;
         }
         else
         {
