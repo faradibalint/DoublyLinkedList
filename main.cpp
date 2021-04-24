@@ -26,22 +26,40 @@ public:
         first = NULL;
         last = NULL;
     }
-    void fillup(int q[], int m) ///lista feltöltése tömbből - MARCELL
+    void fillup(int q[], int m) ///lista feltöltése tömbből - MARCELL - KÉSZ
     {
-
-        //m: tomb elemeinek szama, e: elozo, j: jelenlegi
-        element* e= new element;
-        e->data=q[0];
+        element* e = new element;
+        e->data = q[0];
+        e->next = NULL;
+        e->previous = NULL;
         first = e;
+        last = e;
+        element* before = e;
+
         for(int i=1;i<m;i++)
         {
-            element* j= new element;
-            j->data=q[i];
-            e->next = j;
-            e=j;
+            element* uj = new element;
+            uj->data = q[i];
+            uj->next = NULL;
+            uj->previous = NULL;
+            if (last == e)
+            {
+                e->next = uj;
+                uj->previous = e;
+                before = uj;
+            }
+            else if ((i+1)==m)
+            {
+                before->next = uj;
+                uj->previous = before;
+                last = uj;
+            }
+            else
+            {
+                before->next = uj;
+                uj->previous = before;
+            }
         }
-        e->next=NULL;
-        last=e;
     }
     void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé" - ZSUZSI - KÉSZ
     {
@@ -127,7 +145,7 @@ public:
             }
         }
     }
-    void arrangednewelement(int q) ///új elem beszúrása rendezett listába - MARCELL
+    void arrangednewelement(int q) ///új elem beszúrása rendezett listába - MARCELL - KÉSZ
     {
         ///megnézzük hogy rendezett e a lista --> elvileg ez a rész működik
         bool rendezett = true;
@@ -173,6 +191,8 @@ public:
                             element* elem = new element();
                             elem->data = q;
                             elem->next = y;
+                            elem->previous = z;
+                            y->previous = elem;
                             z->next = elem;
                             kisebbe=true;
                         }
@@ -396,8 +416,22 @@ public:
     }
     void deletelist() ///a lista törlése - Marcell
     {
-      cout<<"List has been successfully deleted."<<endl;
-      delete this;
+      element* n = first;
+        if(first!=NULL)
+        {
+            element* SDSN = new element; ///jol hangzik, annyit tesz hogy "Self-Destruct SubNode" XD
+            while(n!=NULL)
+            {
+                SDSN = n;
+                n=n->next;
+                free(SDSN);
+            }
+            cout<<"All nodes have been obliterated."<<endl;
+        }
+        else
+        {
+            cout<<"ERROR: The list is empty."<<endl;
+        }
     }
     int subquantity(){
         element* n = first;
