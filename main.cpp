@@ -43,11 +43,12 @@ public:
         e->next=NULL;
         last=e;
     }
-    void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé" - ZSUZSi
+    void beforenewelement(int q) ///új elem beszúrása a lista elejére "a fej elé" - ZSUZSI - KÉSZ
     {
         element* elso = new element;
         elso->data = q;
         elso->next = NULL;
+        elso->previous = NULL;
 
         if(first==NULL)
         {
@@ -58,7 +59,9 @@ public:
         {
             elso->next = first;
             first = elso;
-        }   
+            element* masodik = elso->next;
+            masodik->previous = elso;
+        }
     }
     void afternewelement(int q) ///új elem beszúrása a lista végére - BÁLINT - KÉSZ
     {
@@ -78,26 +81,50 @@ public:
             last=elso;
         }
     }
-    void insidenewelement(int q) ///új elem beszúrása a listába - ZSUSZI
+    void insidenewelement(int q) ///új elem beszúrása a listába - ZSUZSI - KÉSZ
     {
-        element* elso = new element;
-        elso->data = q;
-        elso->next = NULL;
+        element* uj = new element;
+        uj->data = q;
+        uj->next = NULL;
+        uj->previous = NULL;
 
         if(first==NULL)
         {
-            first = elso;
-            last = elso;
-        }
-        else if (first==last)
-        {
-            first->next = elso;
-            last = elso;
+            first = uj;
+            last = uj;
         }
         else
         {
-            elso->next = first->next;
-            first->next = elso;
+            int hdik=0;
+            while(hdik<=0 or hdik>(subquantity()+1))
+            {
+                cout<<"Hanyadik helyre szurjuk be?"<<endl;
+                cin>>hdik;
+            }
+            if(hdik==1)
+            {
+                cout<<"ERROR: Use beforenewelement()!"<<endl;
+            }
+            else if(hdik==subquantity()+1)
+            {
+                cout<<"ERROR: Use afternewelement()!"<<endl;
+            }
+            else
+            {
+                int i=1;
+                element* n;
+                n=first;
+                while(i!=hdik and i<subquantity())
+                {
+                    n=n->next;
+                    i++;
+                }
+                n->previous->next=uj;
+                uj->previous=n->previous;
+                n->previous=uj;
+                uj->next=n;
+
+            }
         }
     }
     void arrangednewelement(int q) ///új elem beszúrása rendezett listába - MARCELL
@@ -276,7 +303,7 @@ public:
             cout<<"ERROR:The list is empty."<<endl;
         }
     }
-    void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel - ZSUZSI
+    void elementswitch(int q) ///két szomszédos elem cseréje --> az első elem sorszámát kell megadni -->ezt cseréljük az utánalévővel - ZSUZSI - KÉSZ
     {
         if (first!=NULL && q!=0 && q<this->subquantity()){
         element* n = first;
