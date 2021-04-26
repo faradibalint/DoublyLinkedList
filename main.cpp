@@ -230,18 +230,19 @@ public:
             cout<<"ERROR: The list is empty."<<endl;
         }
     }
-    void lastdelete() ///az utolsó elem törlése - CSABI
+    void lastdelete() ///az utolsó elem törlése - CSABI - KÉSZ
     {
        if(first!=NULL)
         {
             element* Utolso=last;
             element* n = first;
-            while(n->next!=last){
+            while(n->next!=last)
+            {
                 n=n->next;
             }
             last=n;
             last->next=NULL;
-            delete Utolso;
+            free(Utolso);
             cout<<"The last element has been successfully deleted."<<endl;
         }
         else
