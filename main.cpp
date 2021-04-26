@@ -371,13 +371,13 @@ public:
                 o=o->next;
             } while (o!=NULL);
 
-            a=a+1;
-            element* p = first;
+            a=0;
+            element* p = last;
             do
             {
                 p->data=szamok[a];
                 a=a+1;
-                p=p->next;
+                p=p->previous;
             } while (p!=NULL);
         }
     }
